@@ -1,15 +1,19 @@
 import mongoose from "mongoose";
 import app from "./app.js";
+import dotenv from "dotenv";
 
+dotenv.config(); // Carga las variables de entorno
 
-const connectDB = async () => {
-  if (mongoose.connection.readyState >= 1) return;
+export const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb+srv://garcessalasdavid_db_user:bK42MHlNzh42BFpo@cluster0.74inyvo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
-    console.log("✅ Conectado a MongoDB Atlas");
-  } catch (err) {
-    console.error("❌ Error al conectar con MongoDB:", err.message);
-    throw err; // Importante para que Vercel sepa que falló
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB Atlas");
+  } catch (error) {
+    console.error("Error connecting to MongoDB Atlas:", error);
+    process.exit(1); // Termina la app si no se puede conectar
   }
 };
 
