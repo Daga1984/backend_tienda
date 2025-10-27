@@ -12,5 +12,8 @@ app.use(express.json());
 app.use(cors());    
 // Routes
 app.use("/api/auth", authRoutes);
+app.get("/", (req, res) => {
+  res.send("Backend funcionando 🚀");
+});
 app.use("/api", productRoutes);
 export default app;
