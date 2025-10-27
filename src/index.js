@@ -9,6 +9,7 @@ const connectDB = async () => {
     console.log("✅ Conectado a MongoDB Atlas");
   } catch (err) {
     console.error("❌ Error al conectar con MongoDB:", err.message);
+    throw err; // Importante para que Vercel sepa que falló
   }
 };
 
