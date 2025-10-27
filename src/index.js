@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import app from "./app.js";
-import mongoose from "mongoose";
+
 
 const connectDB = async () => {
   if (mongoose.connection.readyState >= 1) return;
